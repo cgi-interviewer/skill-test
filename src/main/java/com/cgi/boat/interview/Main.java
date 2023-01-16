@@ -2,6 +2,7 @@ package com.cgi.boat.interview;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -9,11 +10,14 @@ public class Main {
         Map<String, List<String>> firstByLast = PeopleProcessor.firstnamesByLastname(PeopleSetup.people);
         Map<String, List<String>> lastByFirst = PeopleProcessor.lastnamesByFirstname(PeopleSetup.people);
 
-        // TODO: Print out 3 most common first names along with number of occurrences
-        // for example:
-        // Homer: 32
-        // Bart: 21
-        // William: 3
+        List<Map.Entry<String, List<String>>> result = lastByFirst
+                .entrySet()
+                .stream()
+                .sorted((o1, o2) -> Integer.compare(o2.getValue().size(), o1.getValue().size()))
+                .limit(3)
+                .collect(Collectors.toList());
+
+        result.forEach(stringListEntry -> System.out.println(stringListEntry.getKey() + " : " + stringListEntry.getValue().size()));
     }
 
 
