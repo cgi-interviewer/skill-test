@@ -9,17 +9,12 @@ public class Main {
         Map<String, List<String>> firstByLast = PeopleProcessor.firstnamesByLastname(PeopleSetup.people);
         Map<String, List<String>> lastByFirst = PeopleProcessor.lastnamesByFirstname(PeopleSetup.people);
 
-        // TODO: Print out 3 most common first names along with number of occurrences
-        // for example:
-        // Homer: 32
-        // Bart: 21
-        // William: 3
+        // Print out 3 most common first names along with number of occurrences
+        lastByFirst.entrySet()
+                .stream()
+                .sorted((e1, e2) -> Integer.compare(e2.getValue().size(), e1.getValue().size()))
+                .limit(3)
+                .map(r -> r.getKey() + ": " + r.getValue().size())
+                .forEach(System.out::println);
     }
-
-
-
-
-
-
-
 }
