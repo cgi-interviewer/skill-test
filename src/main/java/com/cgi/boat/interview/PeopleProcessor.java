@@ -37,8 +37,18 @@ class PeopleProcessor {
 	 *
 	 */
 	static Map<String, List<String>> firstnamesByLastname(List<Person> people) {
-		// TODO: implement
-		return null;
+		if (people == null) {
+			return Collections.emptyMap();
+		}
+
+		return people.stream().collect(Collectors.groupingBy(p -> {
+			if (p.getLastName() == null) {
+				return "";
+			}
+			return p.getLastName();
+		}, Collectors.collectingAndThen(Collectors.toList(),
+				list -> list.stream().map(p -> p.getFirstName()).collect(Collectors.toList()))));
+
 	}
 
 }
