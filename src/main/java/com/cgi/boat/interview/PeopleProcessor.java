@@ -19,6 +19,7 @@ class PeopleProcessor {
      */
     static Map<String, List<String>> lastnamesByFirstname(List<Person> people){
         //TODO: implement
+    	return null;
     }
 
 
@@ -36,6 +37,7 @@ class PeopleProcessor {
      */
     static Map<String, List<String>> firstnamesByLastname(List<Person> people){
         //TODO: implement
+    	return null;
     }
 
 }
